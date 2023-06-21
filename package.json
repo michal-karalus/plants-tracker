@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
+    "start": "nx serve frontend",
     "lint": "nx lint frontend",
     "test": "nx test frontend"
   },
