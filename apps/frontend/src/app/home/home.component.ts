@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { PlantsService } from '../services/plants.service';
+
 type Plant = {
   x: number;
   y: number;
@@ -12,14 +14,11 @@ type Plant = {
 })
 export class HomeComponent {
   plants: Plant[] = [];
-  plantSize = 20;
 
-  addPlant(e: MouseEvent): void {
-    const { clientX, clientY } = e;
-    const plant: Plant = {
-      x: clientY - this.plantSize,
-      y: clientX - this.plantSize,
-    };
-    this.plants.push(plant);
+  constructor(private plantsService: PlantsService) {}
+
+  addPlant(event: MouseEvent): void {
+    this.plantsService.addPlant(event);
+    this.plants = this.plantsService.getPlants();
   }
 }
