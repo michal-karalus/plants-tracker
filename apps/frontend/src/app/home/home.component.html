@@ -1,0 +1,10 @@
+<div class="w-screen h-screen bg-green-100 relative" (click)="addPlant($event)">
+  <img
+    src="assets/tree.svg"
+    *ngFor="let plant of plants"
+    class="absolute w-10"
+    [style.top.px]="plant.x"
+    [style.left.px]="plant.y"
+    (click)="$event.stopPropagation()"
+  />
+</div>
