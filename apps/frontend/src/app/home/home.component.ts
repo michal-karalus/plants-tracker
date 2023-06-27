@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PlantsService } from '../services/plants.service';
 
@@ -12,13 +12,24 @@ type Plant = {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   plants: Plant[] = [];
 
   constructor(private plantsService: PlantsService) {}
 
+  ngOnInit() {
+    this.fetchPlants();
+  }
+
   addPlant(event: MouseEvent): void {
-    this.plantsService.addPlant(event);
-    this.plants = this.plantsService.getPlants();
+    this.plantsService.addPlant(event).subscribe(() => {
+      this.fetchPlants();
+    });
+  }
+
+  private fetchPlants(): void {
+    this.plantsService.getPlants().subscribe((data) => {
+      this.plants = data;
+    });
   }
 }
