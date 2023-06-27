@@ -3,8 +3,8 @@
     src="assets/tree.svg"
     *ngFor="let plant of plants"
     class="absolute w-10"
-    [style.top.px]="plant.x"
-    [style.left.px]="plant.y"
+    [style.top.px]="plant.y"
+    [style.left.px]="plant.x"
     (click)="$event.stopPropagation()"
   />
 </div>
