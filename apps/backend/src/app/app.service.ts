@@ -1,19 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaClient, Plant } from '@prisma/client';
 
-type Plant = {
-  x: number;
-  y: number;
-};
+const prisma = new PrismaClient();
 
 @Injectable()
 export class AppService {
   plants: Plant[] = [];
 
   getData() {
-    return this.plants;
+    return prisma.plant.findMany();
   }
 
   addData(data: Plant) {
-    this.plants.push(data);
+    return prisma.plant.create({ data });
   }
 }
