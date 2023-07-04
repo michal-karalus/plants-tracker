@@ -1,11 +1,7 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Plant } from '@prisma/client';
 
 import { AppService } from './app.service';
-
-type Plant = {
-  x: number;
-  y: number;
-};
 
 @Controller('/plants')
 export class AppController {
