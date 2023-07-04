@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Plant } from '@prisma/client';
 
 import { PlantsService } from '../services/plants.service';
-
-type Plant = {
-  x: number;
-  y: number;
-};
 
 @Component({
   selector: 'plants-tracker-home',

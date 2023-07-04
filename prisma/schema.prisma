@@ -9,6 +9,6 @@ datasource db {
 
 model Plant {
   id String @id @default(cuid())
-  x Int
-  y Int
+  positionX Int
+  positionY Int
 }
