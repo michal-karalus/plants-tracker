@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Plant } from '@prisma/client';
 
 import { environment } from '@/environments/environment.development';
-
-type Plant = {
-  x: number;
-  y: number;
-};
 
 @Injectable({
   providedIn: 'root',
@@ -24,8 +20,8 @@ export class PlantsService {
   addPlant(event: MouseEvent): Observable<Plant> {
     const { offsetX, offsetY } = event;
     return this.httpClient.post<Plant>(`${environment.API_URL}/plants`, {
-      x: offsetX - this.plantSize,
-      y: offsetY - this.plantSize,
+      positionX: offsetX - this.plantSize,
+      positionY: offsetY - this.plantSize,
     });
   }
 }
