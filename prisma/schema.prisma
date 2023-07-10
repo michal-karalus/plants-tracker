@@ -8,10 +8,10 @@ datasource db {
 }
 
 model Plant {
-  id        String @id @default(cuid())
+  id        Int  @id @default(autoincrement())
   positionX Int
   positionY Int
-  plot      Plot   @relation(fields: [plotId], references: [id])
+  plot      Plot @relation(fields: [plotId], references: [id])
   plotId    Int
 }
 
