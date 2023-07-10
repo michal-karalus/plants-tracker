@@ -7,8 +7,10 @@ const prisma = new PrismaClient();
 export class AppService {
   plants: Plant[] = [];
 
-  getData() {
-    return prisma.plant.findMany();
+  getData(plotId: number) {
+    return prisma.plant.findMany({
+      where: { plotId },
+    });
   }
 
   addData(data: Plant) {

@@ -13,15 +13,20 @@ export class PlantsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getPlants(): Observable<Plant[]> {
-    return this.httpClient.get<Plant[]>(`${environment.API_URL}/plants`);
+  getPlants(plotId: string): Observable<Plant[]> {
+    return this.httpClient.get<Plant[]>(
+      `${environment.API_URL}/${plotId}/plants`
+    );
   }
 
-  addPlant(event: MouseEvent): Observable<Plant> {
+  addPlant(event: MouseEvent, plotId: string): Observable<Plant> {
     const { offsetX, offsetY } = event;
-    return this.httpClient.post<Plant>(`${environment.API_URL}/plants`, {
-      positionX: offsetX - this.plantSize,
-      positionY: offsetY - this.plantSize,
-    });
+    return this.httpClient.post<Plant>(
+      `${environment.API_URL}/${plotId}/plants`,
+      {
+        positionX: offsetX - this.plantSize,
+        positionY: offsetY - this.plantSize,
+      }
+    );
   }
 }
