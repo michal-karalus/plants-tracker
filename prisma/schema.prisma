@@ -8,7 +8,15 @@ datasource db {
 }
 
 model Plant {
-  id String @id @default(cuid())
+  id        String @id @default(cuid())
   positionX Int
   positionY Int
+  plot      Plot   @relation(fields: [plotId], references: [id])
+  plotId    Int
+}
+
+model Plot {
+  id    Int     @id @default(autoincrement())
+  name  String
+  Plant Plant[]
 }
