@@ -4,16 +4,16 @@ import { PrismaClient, Plant } from '@prisma/client';
 const prisma = new PrismaClient();
 
 @Injectable()
-export class AppService {
+export class PlantsService {
   plants: Plant[] = [];
 
-  getData(plotId: number) {
+  getPlants(plotId: number) {
     return prisma.plant.findMany({
       where: { plotId },
     });
   }
 
-  addData(data: Plant) {
+  addPlant(data: Plant) {
     return prisma.plant.create({ data });
   }
 }
