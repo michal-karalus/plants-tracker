@@ -16,4 +16,10 @@ export class PlotsService {
       .get<Plot[]>(`${environment.API_URL}/plots`)
       .pipe(shareReplay(1));
   }
+
+  addPlot(name: string) {
+    return this.httpClient.post(`${environment.API_URL}/plots`, {
+      name,
+    });
+  }
 }
