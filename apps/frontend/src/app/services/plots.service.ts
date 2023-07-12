@@ -31,14 +31,24 @@ export class PlotsService {
       .pipe(shareReplay(1));
   }
 
-  addPlot(name: string) {
-    return this.httpClient.post(`${environment.API_URL}/plots`, {
+  addPlot(name: string): Observable<Plot> {
+    return this.httpClient.post<Plot>(`${environment.API_URL}/plots`, {
       name,
     });
   }
 
   deletePlot(id: number) {
     return this.httpClient.delete(`${environment.API_URL}/plots/${id}`);
+  }
+
+  getPlot(id: number): Observable<Plot> {
+    return this.httpClient.get<Plot>(`${environment.API_URL}/plots/${id}`);
+  }
+
+  editPlot(id: number, name: string): Observable<Plot> {
+    return this.httpClient.put<Plot>(`${environment.API_URL}/plots/${id}`, {
+      name,
+    });
   }
 
   refetchPlots(): void {
