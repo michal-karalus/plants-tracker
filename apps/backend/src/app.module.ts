@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
 
-import { PlantsController } from '@controllers/plants.controller';
-import { PlantsService } from '@services/plants.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+
+import { PlantsController } from '@controllers/plants.controller';
+import { PlantsService } from '@services/plants.service';
+import { PlotsController } from './controllers/plots.controller';
+import { PlotsService } from './services/plots.service';
 
 @Module({
   imports: [
@@ -12,7 +15,7 @@ import { join } from 'path';
       exclude: ['/api*'],
     }),
   ],
-  controllers: [PlantsController],
-  providers: [PlantsService],
+  controllers: [PlantsController, PlotsController],
+  providers: [PlantsService, PlotsService],
 })
 export class AppModule {}
