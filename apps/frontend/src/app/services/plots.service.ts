@@ -22,4 +22,8 @@ export class PlotsService {
       name,
     });
   }
+
+  deletePlot(id: number) {
+    return this.httpClient.delete(`${environment.API_URL}/plots/${id}`);
+  }
 }
