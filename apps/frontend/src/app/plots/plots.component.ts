@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Plot } from '@prisma/client';
+import { Component } from '@angular/core';
 
 import { PlotsService } from '../services/plots.service';
 
@@ -8,26 +7,16 @@ import { PlotsService } from '../services/plots.service';
   templateUrl: './plots.component.html',
   styleUrls: [],
 })
-export class PlotsComponent implements OnInit {
-  plots: Plot[];
+export class PlotsComponent {
+  readonly plots$ = this.plotsService.plots$;
 
-  constructor(private plotsService: PlotsService) {
-    this.plots = [];
-  }
-
-  ngOnInit() {
-    this.fetchPlots();
-  }
-
-  fetchPlots() {
-    this.plotsService.getPlots().subscribe((plots) => {
-      this.plots = plots;
-    });
-  }
+  constructor(private plotsService: PlotsService) {}
 
   deletePlot(id: number) {
-    this.plotsService.deletePlot(id).subscribe(() => {
-      this.fetchPlots();
+    this.plotsService.deletePlot(id).subscribe({
+      next: () => {
+        this.plotsService.refetchPlots();
+      },
     });
   }
 }

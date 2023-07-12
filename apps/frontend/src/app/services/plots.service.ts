@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  combineLatest,
+  shareReplay,
+  switchMap,
+} from 'rxjs';
 import { Plot } from '@prisma/client';
 
 import { environment } from '@/environments/environment.development';
@@ -9,6 +15,14 @@ import { environment } from '@/environments/environment.development';
   providedIn: 'root',
 })
 export class PlotsService {
+  private readonly refetchPlots$ = new BehaviorSubject(true);
+
+  readonly plots$ = combineLatest([this.refetchPlots$]).pipe(
+    switchMap(() => {
+      return this.getPlots();
+    })
+  );
+
   constructor(private httpClient: HttpClient) {}
 
   getPlots(): Observable<Plot[]> {
@@ -25,5 +39,9 @@ export class PlotsService {
 
   deletePlot(id: number) {
     return this.httpClient.delete(`${environment.API_URL}/plots/${id}`);
+  }
+
+  refetchPlots(): void {
+    this.refetchPlots$.next(true);
   }
 }
