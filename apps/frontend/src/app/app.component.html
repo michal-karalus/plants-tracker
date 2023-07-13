@@ -1,12 +1,7 @@
 <div class="flex h-screen">
-  <nav class="w-1/5 bg-gray-50">
-    <h1 class="text-3xl mx-4 my-6 font-semibold mb-4">Plants Tracker</h1>
-    <a
-      href="/"
-      class="text-black block py-4 px-6 hover:bg-blue-100 text-xl transition-all duration-200"
-      >Plots</a
-    >
-  </nav>
+  <div class="w-1/5 bg-gray-50">
+    <plants-tracker-side-menu></plants-tracker-side-menu>
+  </div>
   <div class="w-4/5">
     <router-outlet></router-outlet>
   </div>
