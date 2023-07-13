@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PlotsComponent } from './plots/plots.component';
 import { PlotFormComponent } from './plot-form/plot-form.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PlotFormComponent } from './plot-form/plot-form.component';
     HomeComponent,
     PlotsComponent,
     PlotFormComponent,
+    SideMenuComponent,
   ],
   imports: [
     BrowserModule,
