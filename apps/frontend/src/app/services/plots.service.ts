@@ -9,7 +9,7 @@ import {
 } from 'rxjs';
 import { Plot } from '@prisma/client';
 
-import { environment } from '@/environments/environment.development';
+import { environment } from '@/environments/environment';
 
 @Injectable({
   providedIn: 'root',
