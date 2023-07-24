@@ -1,3 +1,3 @@
 export const environment = {
-  API_URL: 'https://plants-tracker-api.azurewebsites.net/api',
+  API_URL: 'https://plants-tracker.azurewebsites.net/api',
 };
