@@ -23,12 +23,12 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-          
-      - name: Apply migrations
-        env: 
+
+      - name: Apply migrations and seed database
+        env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          npx prisma migrate deploy
+          npm run db:reset
 
       - name: Zip all files for upload between jobs
         run: zip --symlinks -r nest.zip ./*
@@ -60,6 +60,6 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_83B220B72DDB4500A7F0F0DE3B96178C }}
           package: nest.zip
-      
+
       - name: Delete zip file
         run: rm nest.zip
