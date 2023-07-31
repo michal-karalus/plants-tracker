@@ -28,7 +28,8 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          npm run db:reset
+          npm run db:migrate
+          npm run db:seed
 
       - name: Zip all files for upload between jobs
         run: zip --symlinks -r nest.zip ./*
@@ -60,6 +61,7 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_83B220B72DDB4500A7F0F0DE3B96178C }}
           package: nest.zip
+          images: null
 
       - name: Delete zip file
         run: rm nest.zip
