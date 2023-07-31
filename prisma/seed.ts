@@ -3,6 +3,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.plot.deleteMany();
+  await prisma.plant.deleteMany();
+
   await prisma.plot.createMany({
     data: [{ name: 'Garden Plot', id: 1 }],
   });
