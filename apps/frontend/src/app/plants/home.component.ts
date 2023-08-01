@@ -6,9 +6,9 @@ import { RouteDataService } from '../services/route-data.service';
 @Component({
   selector: 'plants-tracker-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: [],
 })
-export class HomeComponent {
+export class PlantsComponent {
   private readonly plotId$ = this.routeData.activeRoutePlotId$;
 
   plants$ = this.plantsService.plants$;
