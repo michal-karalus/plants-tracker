@@ -32,7 +32,7 @@ jobs:
           npm run db:seed
 
       - name: Zip all files for upload between jobs
-        run: zip --symlinks -r nest.zip ./*
+        run: zip --symlinks -r nest.zip ./dist/ ./package.json ./package-lock.json
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
