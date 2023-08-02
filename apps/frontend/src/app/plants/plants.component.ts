@@ -4,8 +4,8 @@ import { PlantsService } from '../services/plants.service';
 import { RouteDataService } from '../services/route-data.service';
 
 @Component({
-  selector: 'plants-tracker-home',
-  templateUrl: './home.component.html',
+  selector: 'plants-tracker-plants',
+  templateUrl: './plants.component.html',
   styleUrls: [],
 })
 export class PlantsComponent {
