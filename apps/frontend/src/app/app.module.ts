@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { appRoutes } from './app.routes';
 import { AppComponent } from './app.component';
-import { PlantsComponent } from './plants/home.component';
+import { PlantsComponent } from './plants/plants.component';
 import { PlotsComponent } from './plots/plots.component';
 import { PlotFormComponent } from './plot-form/plot-form.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';

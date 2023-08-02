@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 
 import { PlotsComponent } from './plots/plots.component';
 import { PlotFormComponent } from './plot-form/plot-form.component';
-import { PlantsComponent } from './plants/home.component';
+import { PlantsComponent } from './plants/plants.component';
 
 export const appRoutes: Route[] = [
   { path: '', component: PlotsComponent },
