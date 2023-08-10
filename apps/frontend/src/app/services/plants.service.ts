@@ -37,16 +37,19 @@ export class PlantsService {
     );
   }
 
-  addPlant(event: MouseEvent, plotId$: Observable<string>): Observable<Plant> {
+  addPlant(
+    x: number,
+    y: number,
+    plotId$: Observable<string>
+  ): Observable<Plant> {
     return plotId$.pipe(
       take(1),
       switchMap((plotId) => {
-        const { offsetX, offsetY } = event;
         return this.httpClient.post<Plant>(
           `${environment.API_URL}/${plotId}/plants`,
           {
-            positionX: offsetX - this.plantSize,
-            positionY: offsetY - this.plantSize,
+            positionX: +x.toFixed() - this.plantSize,
+            positionY: +y.toFixed() - this.plantSize,
           }
         );
       })
