@@ -4,6 +4,7 @@ import {
   BehaviorSubject,
   Observable,
   combineLatest,
+  of,
   switchMap,
   take,
 } from 'rxjs';
@@ -22,6 +23,8 @@ export class PlantsService {
 
   plants$ = combineLatest([this.plotId$, this.refetchPlants$]).pipe(
     switchMap(([plotId]) => {
+      if (!plotId) return of();
+
       return this.getPlants(plotId);
     })
   );
