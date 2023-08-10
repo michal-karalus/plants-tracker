@@ -9,10 +9,10 @@ datasource db {
 
 model Plant {
   id        Int  @id @default(autoincrement())
-  positionX Int
-  positionY Int
-  plot      Plot @relation(fields: [plotId], references: [id], onDelete: Cascade)
+  positionX Float
+  positionY Float
   plotId    Int
+  plot      Plot @relation(fields: [plotId], references: [id], onDelete: Cascade)
 }
 
 model Plot {

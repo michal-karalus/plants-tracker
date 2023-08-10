@@ -55,7 +55,6 @@ export class PlantsComponent implements OnDestroy, OnInit {
   }
 
   addPlant(x: number, y: number): void {
-    console.log(x, y);
     this.plantsService.addPlant(x, y, this.plotId$).subscribe(() => {
       this.plantsService.refetch();
     });

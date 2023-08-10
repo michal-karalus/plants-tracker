@@ -51,8 +51,8 @@ export class PlantsService {
         return this.httpClient.post<Plant>(
           `${environment.API_URL}/${plotId}/plants`,
           {
-            positionX: +x.toFixed() - this.plantSize,
-            positionY: +y.toFixed() - this.plantSize,
+            positionX: x - this.plantSize,
+            positionY: y - this.plantSize,
           }
         );
       })
