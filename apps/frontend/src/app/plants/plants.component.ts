@@ -36,7 +36,7 @@ export class PlantsComponent implements OnDestroy, OnInit {
       const child = document.createElement('img');
       child.src = 'assets/tree.svg';
       child.setAttribute('data-id', 'panzoom-child');
-      child.classList.add('w-10');
+      child.classList.add('w-10', 'cursor-pointer');
       this.node.appendChild(child);
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
