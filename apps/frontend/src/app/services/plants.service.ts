@@ -4,6 +4,7 @@ import {
   BehaviorSubject,
   Observable,
   combineLatest,
+  of,
   switchMap,
   take,
 } from 'rxjs';
@@ -22,6 +23,8 @@ export class PlantsService {
 
   plants$ = combineLatest([this.plotId$, this.refetchPlants$]).pipe(
     switchMap(([plotId]) => {
+      if (!plotId) return of();
+
       return this.getPlants(plotId);
     })
   );
@@ -37,17 +40,32 @@ export class PlantsService {
     );
   }
 
-  addPlant(event: MouseEvent, plotId$: Observable<string>): Observable<Plant> {
+  addPlant(
+    x: number,
+    y: number,
+    plotId$: Observable<string>
+  ): Observable<Plant> {
     return plotId$.pipe(
       take(1),
       switchMap((plotId) => {
-        const { offsetX, offsetY } = event;
         return this.httpClient.post<Plant>(
           `${environment.API_URL}/${plotId}/plants`,
           {
-            positionX: offsetX - this.plantSize,
-            positionY: offsetY - this.plantSize,
+            positionX: x - this.plantSize,
+            positionY: y - this.plantSize,
           }
+        );
+      })
+    );
+  }
+
+  editPlant(plant: Plant, plotId$: Observable<string>): Observable<Plant> {
+    return plotId$.pipe(
+      take(1),
+      switchMap((plotId) => {
+        return this.httpClient.put<Plant>(
+          `${environment.API_URL}/${plotId}/plants`,
+          { ...plant }
         );
       })
     );

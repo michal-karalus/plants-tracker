@@ -32,6 +32,7 @@
     "@nx/angular": "16.3.2",
     "@prisma/client": "^4.16.1",
     "axios": "^1.0.0",
+    "panzoom-core": "^1.2.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
