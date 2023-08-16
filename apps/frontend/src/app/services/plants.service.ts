@@ -59,6 +59,18 @@ export class PlantsService {
     );
   }
 
+  editPlant(plant: Plant, plotId$: Observable<string>): Observable<Plant> {
+    return plotId$.pipe(
+      take(1),
+      switchMap((plotId) => {
+        return this.httpClient.put<Plant>(
+          `${environment.API_URL}/${plotId}/plants`,
+          { ...plant }
+        );
+      })
+    );
+  }
+
   refetch(): void {
     this.refetchPlants$.next(true);
   }

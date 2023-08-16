@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
 import { Plant } from '@prisma/client';
 
 import { PlantsService } from '@services/plants.service';
@@ -16,5 +16,11 @@ export class PlantsController {
   addPlant(@Param('plotId') plotId: string, @Body() data: Plant) {
     data.plotId = Number(plotId);
     return this.plantsService.addPlant(data);
+  }
+
+  @Put()
+  editPlant(@Param('plotId') plotId: string, @Body() data: Plant) {
+    data.plotId = Number(plotId);
+    return this.plantsService.editPlant(data);
   }
 }

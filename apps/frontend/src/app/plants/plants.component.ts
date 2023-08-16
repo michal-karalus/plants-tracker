@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import initPanZoom, { PanZoomOptions } from 'panzoom-core';
 import { PanZoomApi } from 'panzoom-core/types/types';
+import { Plant } from '@prisma/client';
 
 import { PlantsService } from '../services/plants.service';
 import { RouteDataService } from '../services/route-data.service';
@@ -37,10 +38,23 @@ export class PlantsComponent implements OnDestroy, OnInit {
       child.setAttribute('data-id', 'panzoom-child');
       child.classList.add('w-10');
       this.node.appendChild(child);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const onMouseUp = (props: any) => {
+        const currentPlant: Plant = {
+          id: plant.id,
+          plotId: plant.plotId,
+          positionX: props.x,
+          positionY: props.y,
+        };
+        this.editPlant(currentPlant);
+      };
+
       this.panzoom.addElement(child, {
         id: plant.id,
         x: plant.positionX,
         y: plant.positionY,
+        onMouseUp,
       });
     });
   });
@@ -56,6 +70,12 @@ export class PlantsComponent implements OnDestroy, OnInit {
 
   addPlant(x: number, y: number): void {
     this.plantsService.addPlant(x, y, this.plotId$).subscribe(() => {
+      this.plantsService.refetch();
+    });
+  }
+
+  editPlant(plant: Plant) {
+    this.plantsService.editPlant(plant, this.plotId$).subscribe(() => {
       this.plantsService.refetch();
     });
   }

@@ -16,4 +16,11 @@ export class PlantsService {
   addPlant(data: Plant) {
     return prisma.plant.create({ data });
   }
+
+  editPlant(data: Plant) {
+    return prisma.plant.update({
+      where: { id: data.id },
+      data
+    });
+  }
 }
