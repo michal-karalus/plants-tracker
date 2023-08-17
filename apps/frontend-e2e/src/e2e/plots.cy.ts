@@ -9,6 +9,7 @@ describe('Plots', () => {
     cy.contains('Add plot').click();
     cy.findByTestId('plot-name-input').type(plotName);
     cy.contains(/submit/i).click();
+    cy.location('pathname').should('match', /plot\/\d+/);
     cy.contains('Plots').click();
     cy.findAllByTestId('plot-name')
       .should('have.length', 2)
