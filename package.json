@@ -8,6 +8,8 @@
     "build": "nx run-many --parallel --target=build --projects=frontend,backend",
     "lint": "nx lint frontend",
     "test": "nx test frontend",
+    "e2e": "nx e2e frontend-e2e --baseUrl=https://plants-tracker.azurewebsites.net",
+    "e2e:dev": "nx e2e frontend-e2e --baseUrl=http://localhost:4200 --watch",
     "db:migration": "prisma migrate dev",
     "db:migrate": "prisma migrate deploy",
     "db:seed": "prisma db seed"
@@ -61,6 +63,7 @@
     "@nx/webpack": "16.3.2",
     "@nx/workspace": "16.3.2",
     "@schematics/angular": "~16.0.0",
+    "@testing-library/cypress": "^9.0.0",
     "@types/jest": "^29.4.0",
     "@types/node": "~18.7.1",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
