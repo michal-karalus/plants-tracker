@@ -8,7 +8,7 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/frontend-e2e/cypress.config.ts",
-        "devServerTarget": "frontend:serve:development",
+        "devServerTarget": "",
         "testingType": "e2e"
       },
       "configurations": {
@@ -22,12 +22,18 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/frontend-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": [
+          "apps/frontend-e2e/**/*.{js,ts}"
+        ]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["frontend"]
+  "implicitDependencies": [
+    "frontend"
+  ]
 }

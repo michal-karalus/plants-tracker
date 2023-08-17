@@ -8,6 +8,8 @@
     "build": "nx run-many --parallel --target=build --projects=frontend,backend",
     "lint": "nx lint frontend",
     "test": "nx test frontend",
+    "e2e": "nx e2e frontend-e2e --baseUrl=https://plants-tracker.azurewebsites.net",
+    "e2e:dev": "nx e2e frontend-e2e --baseUrl=http://localhost:4200 --watch",
     "db:migration": "prisma migrate dev",
     "db:migrate": "prisma migrate deploy",
     "db:seed": "prisma db seed"
