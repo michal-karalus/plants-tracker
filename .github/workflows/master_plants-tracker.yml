@@ -73,7 +73,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
       - name: Run E2E tests
-        uses: cypress-io/github-action@v5
-        with:
-          start: npm run e2e
+        run: npm run e2e
