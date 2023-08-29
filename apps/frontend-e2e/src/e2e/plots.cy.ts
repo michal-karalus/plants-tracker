@@ -1,3 +1,7 @@
+import { faker } from '@faker-js/faker';
+
+import { plotsPage } from '../pages/plots.po';
+
 describe('Plots', () => {
   beforeEach(() => {
     cy.exec('npm run db:seed');
@@ -5,17 +9,31 @@ describe('Plots', () => {
   });
 
   it('should add plot', () => {
-    const plotName = 'test plot';
-    cy.contains('Add plot').click();
-    cy.findByTestId('plot-name-input').type(plotName);
-    cy.contains(/submit/i).click();
-    cy.location('pathname').should('match', /plot\/\d+/);
-    cy.contains('Plots').click();
-    cy.findAllByTestId('plot-name')
-      .should('have.length', 2)
-      .last()
-      .then((plot) => {
-        expect(plot.text().trim()).equal(plotName);
-      });
+    const plotName = faker.lorem.sentence();
+    plotsPage.getPlots().then((plots) => {
+      plotsPage.addPlot(plotName);
+      cy.location('pathname').should('match', /plot\/\d+/);
+      cy.contains('Plots').click();
+      plotsPage
+        .getAllPlotsName()
+        .should('have.length', plots.length + 1)
+        .last()
+        .then((plot) => expect(plot.text().trim()).equal(plotName));
+    });
+  });
+
+  it('should edit plot', () => {
+    const plotEditedName = faker.lorem.sentence();
+    plotsPage.editPlot(plotEditedName);
+    plotsPage
+      .getLastPlotName()
+      .then((plotName) => expect(plotName.text().trim()).equal(plotEditedName));
+  });
+
+  it('should delete plot', () => {
+    plotsPage.getPlots().then((plots) => {
+      plotsPage.deletePlot();
+      plotsPage.getPlots().should('have.length', plots.length - 1);
+    });
   });
 });
