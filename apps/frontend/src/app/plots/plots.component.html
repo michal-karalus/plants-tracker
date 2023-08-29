@@ -1,6 +1,10 @@
 <div class="mx-4">
   <h1 class="text-4xl my-2">Plots</h1>
-  <div class="px-8 py-4 m-4 shadow-lg flex" *ngFor="let plot of plots$ | async">
+  <div
+    class="px-8 py-4 m-4 shadow-lg flex"
+    *ngFor="let plot of plots$ | async"
+    data-testid="plot-item"
+  >
     <h2 class="text-xl font-semibold text-gray-900" data-testid="plot-name">
       {{ plot.name }}
     </h2>

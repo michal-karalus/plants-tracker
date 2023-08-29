@@ -7,7 +7,10 @@ async function main() {
   await prisma.plant.deleteMany();
 
   await prisma.plot.createMany({
-    data: [{ name: 'Garden Plot', id: 1 }],
+    data: [
+      { name: 'Garden Plot', id: 1 },
+      { name: 'Another Plot', id: 2 },
+    ],
   });
 
   await prisma.plant.createMany({
