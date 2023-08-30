@@ -5,5 +5,6 @@ export default defineConfig({
   e2e: {
     ...nxE2EPreset(__dirname),
     defaultCommandTimeout: 15000,
+    pageLoadTimeout: 2 * 60 * 1000,
   },
 });
